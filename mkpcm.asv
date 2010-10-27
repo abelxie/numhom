@@ -1,9 +1,0 @@
-function re = mkpcm(P,Q,R)
-% The main purpose here is to do the data verification
-% assuming P and Q are complex number representing points
-% R is a same length vector presenting radius
-    assert(length(P) == length(Q) && length(P) == length(R)
-    abs(Q-P) < R/2
-    re = struct('P',P,'Q',Q,'R',R);
-end
-    

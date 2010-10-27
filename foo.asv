@@ -1,8 +1,0 @@
-path = exp(i*linspace(0,2*pi-1,5));
-xx = real(path);
-yy = imag(path);
-%plot(xx,yy);
-tt = linspace(0,1,length(xx));
-pp = spline(tt,[xx;yy]);
-t0 = linspace(0,1,100);
-plot(ppval(pp,t0),'.')
