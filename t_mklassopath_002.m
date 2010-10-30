@@ -12,4 +12,4 @@ plot(p,'r*');
 axis equal;
 hold on
 plot(q,'ro');
-plot(paracvval(mypp,tt));
+plot(paracvval(mypp,paracvIdenticalDistrib(mypp,10)),'k.');
