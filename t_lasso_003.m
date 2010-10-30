@@ -4,9 +4,9 @@ q = complex(1,0);
 r = 0.1;
 mypp = mklassopath(p,q,r);
 
-ff=mypp{1};
-df=mypp{2};
-breaks=mypp{3};
+ff=mypp{2};
+df=mypp{3};
+breaks=mypp{1}.breaks;
 %% 
 % Test of f
 figure(1);
