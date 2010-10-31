@@ -12,10 +12,10 @@ plot(p,'r*');
 axis equal;
 hold on
 plot(q,'ro');
-plot(paracvV(mypp,paracvIdenticalDistrib(mypp,5)),'k');
+plot(paracvV(mypp,paracvUniformDistrib(mypp,5)),'k');
 %% use arcLength
-arcl = quad(comp0(@abs,curry1(@paracvJacob,mypp)), 0 ,1 );
-N = 100;
+arcl = quad(comp0(@abs,curry1(@paracvJ,mypp)), 0 ,1 );
+N = 30;
 ds = arcl/N;
 TT = paracvArcLength(mypp,ds);
 plot(paracvV(mypp,TT),'b.');

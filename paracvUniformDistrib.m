@@ -1,4 +1,4 @@
-function Vt = paracvIdenticalDistrib(ppcv,N)
+function Vt = paracvUniformDistrib(ppcv,N)
 % return IdenticalDistrib over all the continuous segments
 % NOTE: r(t) now is not continuous, because the result of this function is
 % not continuous, see the following:
