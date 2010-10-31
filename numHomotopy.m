@@ -12,14 +12,16 @@ xjacobs = curry1(@paracvJ,path);
             'features',0,'trainingSet',0);
         t = t0;
         while t<t1
-            x   = xt(t);
+            x   = xt(t) ;
             yis = roots(f(x)).';
             yjacobs = arrayfun(curry1(fj,x),yis);
             
-            M = max(abs(yjacobs));
-            dx = minDist(yis)/(6*M);
+            M = max(norm(yjacobs)) ;
+            dx = minDist(yis)/(6*M) ;
             
-            dt = dx/abs(xjacobs(t));
+            dt = dx/norm(xjacobs(t)) ;
+            % because jacobian is possible a vector
+            % not always as a complex number, so it's safer to use norm
             branchDataSet.yis = [branchDataSet.yis;yis];
             branchDataSet.yjacobs = [branchDataSet.yjacobs;yjacobs];
             branchDataSet.x = [branchDataSet.x,x];

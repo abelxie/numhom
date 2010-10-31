@@ -31,12 +31,12 @@ lasso0 = spline([0,1],[real(sec0(2)),sec0(4)]);
 lassoj = comp0(@complex2vec,curry1(@ppval,diffpp(lasso0)));
 imglasso = comp0(curry1(@cpcmV,H0),curry1(@ppval,lasso0));
 imglassoj = compJ(curry1(@cpcmJ,H0),imglasso,lassoj);
-%curvelength = quad(@(x)arrayfun(comp0(@norm,imglassoj),x),0,1)
+curvelength = quad(@(x)arrayfun(comp0(@norm,imglassoj),x),0,1)
 cvlengthapp = cvLength( arrayfun(imglasso,linspace(0,1,100)) )
 %Note quad need a vectorized version of function
 % use arrayfun to make a function vectorized
 % use norm to get the value
-imgpts = takePoints(imglasso,imglassoj,0.0001);
+imgpts = takePoints(imglasso,imglassoj,0.01);
 %plot(ppval(lasso0,linspace(0,1,60)),'b-');
 % imglasso0 = arrayfun(curry1(@cpcmV,H0),lasso0);
 plot(real(imgpts),imag(imgpts),'m-');
