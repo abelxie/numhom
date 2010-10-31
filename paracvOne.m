@@ -1,4 +1,4 @@
-% one step interation
+% one step curve interation
 function vj = paracvOne(ppcv,t)
 pp = ppcv{1};
 assert(all(pp.form=='paracv'), 'You must specify a paracv object.');

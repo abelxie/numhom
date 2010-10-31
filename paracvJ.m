@@ -1,3 +1,5 @@
+% Jacob
 function v = paracvJ(mypp,X)
-    v = arrayfun(SEL(curry1(@paracvOne,mypp),2,2),X);
+    s = paracvT(mypp);
+    v = arrayfun(@(t) mypp{3}{s(t)}(t),X);
 end
