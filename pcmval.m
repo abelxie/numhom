@@ -24,7 +24,7 @@ function [val,Ja] = pcmval(pcm,X)
         vec  = [real(vec);imag(vec)];
         xp   = x-pcm.P(ind);
         xp   = [real(xp),imag(xp)];
-        if  ~dist == 0 
+        if   dist ~= 0 
              jacob  = jacob + fjacob(dist/rr) / (rr*dist) * (vec * xp);
         end
     end

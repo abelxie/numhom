@@ -2,7 +2,7 @@
 % path: 'prarcv' obj
 % f   : f(x) are the coefficients of y's in the polynomial of F(x,y) = 0
 % fj  : y_i'(x) for each branch y_i
-function [br,foo] = numHomotopy(path,f,fj)
+function br = numHomotopy(path,f,fj)
 xt = curry1(@paracvV,path);
 xjacobs = curry1(@paracvJ,path);
 
@@ -17,7 +17,7 @@ xjacobs = curry1(@paracvJ,path);
             yjacobs = arrayfun(curry1(fj,x),yis);
             
             M = max(abs(yjacobs));
-            dx = minDist(yis)/(5*M);
+            dx = minDist(yis)/(6*M);
             
             dt = dx/abs(xjacobs(t));
             branchDataSet.yis = [branchDataSet.yis;yis];
@@ -59,7 +59,7 @@ xjacobs = curry1(@paracvJ,path);
         end        
     end
     
-    foo = simulate(0,1);
-    br = clustering(foo);
+    ds = simulate(0,1);
+    br = clustering(ds);
 
 end

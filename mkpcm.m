@@ -11,7 +11,8 @@ function re = mkpcm(P,Q,R)
         'The variant point Q should be in the half cell O(P,R/2)');
     for iP = 1:N-1
         for jP = iP+1:N
-            assert( abs(P(iP) - P(jP)) >= R(iP) + R(jP) );
+            assert( abs(P(iP) - P(jP)) >= R(iP) + R(jP),...
+            sprintf('P:[ %s ]\nR:[ %s ]\n iP[%d],jP[%d]',num2str(P),num2str(R),iP,jP));
         end
     end
     re = struct('P',P,'Q',Q,'R',R);
