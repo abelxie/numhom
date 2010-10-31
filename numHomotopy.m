@@ -19,7 +19,7 @@ xjacobs = curry1(@paracvJ,path);
             M = max(abs(yjacobs));
             dx = minDist(yis)/(6*M);
             
-            dt = dx/abs(xjacobs(t));
+            dt = dx/norm(xjacobs(t));
             branchDataSet.yis = [branchDataSet.yis;yis];
             branchDataSet.yjacobs = [branchDataSet.yjacobs;yjacobs];
             branchDataSet.x = [branchDataSet.x,x];
