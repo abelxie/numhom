@@ -7,13 +7,14 @@
 % ds    : the threshold |f'|dx < ds, so ds is restriction on f, rather
 % than f'. Some we will have to estimate Hessian for f.
 % We assume f,f' are defined and continuous on [0,1].
-function samples = mkDiscreteF(jacob,ds)
+function [samples,Kframe] = mkDiscreteF(jacob,ds)
 % the resolution on jacob and Hessian
 jacobRes = 10;
 resampleRes = 10;
 
 % initial conditions
 samples = 0;
+Kframe = 1;
 x = 0;
 meanJacob = jacob(0);
 
@@ -41,8 +42,8 @@ meanJacob = jacob(0);
         
         averageH = (max(localJ) - min(localJ))/(res+1);
 
-        samp =localX( exp(abs(localJ - meanJacob)/meanJacob) > 2 | ...
-            exp(abs(hessian - averageH)/averageH) > 2 );
+        samp =localX( abs(localJ - meanJacob)/meanJacob > 2 | ...
+            abs(hessian - averageH)/averageH > 2 );
         
     end
 %Main Iteration
@@ -51,6 +52,7 @@ while x<1
     sampX = resample(x,nextX,resampleRes);
     meanJacob = (meanJacob * x + (jacob(x)+jacob(nextX))/2 * (nextX-x) )/nextX;
     samples = [samples,sampX,nextX];
+    Kframe = [Kframe,length(samples)];
     x = nextX;
 end
 

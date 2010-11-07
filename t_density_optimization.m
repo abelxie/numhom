@@ -10,8 +10,13 @@ figure(1);
 yy = pdf(tt);
 plot(tt,yy,'.');
 figure(2);
-samples = mkDiscreteF(pdf,0.05);
-plot(samples,pdf(samples),'.');
+clf;
+hold on;
+[samples,Kframe] = mkDiscreteF(pdf,0.08);
+pdfs = pdf(samples);
+plot(samples,pdfs,'.');
+plot(samples(Kframe),pdfs(Kframe),'o');
+
 
 %[u,v,w]=fminsearch(pdf,0,optimset('MaxFunEvals',2))
 
