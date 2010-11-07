@@ -1,10 +1,11 @@
 % generate parameter points by pdf = abs(paracvJacob)
 % N pieces and M points in total
 function Vt = paracvPdf(mypp,N,M)
-    pdf = comp0(@abs,curry1(@paracvJ,mypp));
+    pdf = curry1(@paracvJ,mypp);
     tmp = linspace(0,1,N+1);
     tmp = tmp(1:end-1) + 1./(2*N);
-    p0  = exp(pdf(tmp));
+    p0  = abs([1 1i]*pdf(tmp));
+    
     p0  = ceil(p0./sum(p0) * M);
     dt  = 1/N;
     Vt  = [];
