@@ -9,8 +9,8 @@
 % We assume f,f' are defined and continuous on [0,1].
 function [samples,Kframe] = mkDiscreteF(jacob,ds)
 % the resolution on jacob and Hessian
-jacobRes = 10;
-resampleRes = 10;
+jacobRes = 5;
+resampleRes = 50;
 
 % initial conditions
 samples = 0;
@@ -38,12 +38,15 @@ meanJacob = jacob(0);
         
         localX = linspace(x0+DX,x1-DX,res-1);
         localJ = jacob(localX);
-        hessian = abs(diff([localJ,jacob(x1)]));
+        %hessian = abs(diff([localJ,jacob(x1)]));
         
-        averageH = (max(localJ) - min(localJ))/(res+1);
-
-        samp =localX( abs(localJ - meanJacob)/meanJacob > 2 | ...
-            abs(hessian - averageH)/averageH > 2 );
+        %averageH = (max(localJ) - min(localJ))/(res+1);
+        psi = localJ - meanJacob;
+        psi = (psi - mean(psi))/std(psi);
+        % assume psi ~ N(0,1)
+        % hence 0.06 false positive
+        samp =localX( psi > 1.6 ); %| ...
+            %abs(hessian - averageH)/averageH > 2 );
         
     end
 %Main Iteration

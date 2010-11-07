@@ -37,12 +37,14 @@ imglassoj = compJ(curry1(@cpcmJ,H0),imglasso,lassoj);
 % use arrayfun to make a function vectorized
 % use norm to get the value
 %imgpts = takePoints(imglasso,imglassoj,0.0001);
-absj = curry1(@arrayfun,comp0(@norm,imglassoj));
-chooseT = mkDiscreteF(absj,0.01);
-imgpts = arrayfun(imglasso,chooseT);
-%plot(ppval(lasso0,linspace(0,1,60)),'b-');
+%absj = curry1(@arrayfun,comp0(@norm,imglassoj));
+%chooseT = mkDiscreteF(absj,0.05);
+
+%lassopts = ppval(lasso0,linspace(0,1,60));
+%plot(real(lassopts),imag(lassopts),'.');
+imgpts = arrayfun(imglasso,linspace(0,1,1000));
 % imglasso0 = arrayfun(curry1(@cpcmV,H0),lasso0);
-plot(real(imgpts),imag(imgpts),'m-');
+plot(real(imgpts),imag(imgpts),'m.');
 for zz = 1:4
     plot(real(sec0(zz)),imag(sec0(zz)),'k.');
 end

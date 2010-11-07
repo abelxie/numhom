@@ -12,7 +12,7 @@ plot(tt,yy,'.');
 figure(2);
 clf;
 hold on;
-[samples,Kframe] = mkDiscreteF(pdf,0.08);
+[samples,Kframe] = mkDiscreteF(pdf,0.1);
 pdfs = pdf(samples);
 plot(samples,pdfs,'.');
 plot(samples(Kframe),pdfs(Kframe),'o');
